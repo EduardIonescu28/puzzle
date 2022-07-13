@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puzzle ^ Easy</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <style>
+    #puzzle { 
+      list-style-type: none; 
+      margin: 0px; 
+      padding: 200px 600px; 
+      width: 620px;
+    }
+    #puzzle li { 
+      height: 47px;
+      background-image: url(https://wallpapercave.com/uwp/uwp1313299.webp);
+    }
+    </style>
+    <!-- styles -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+      <div class="nav-center">
+        <h4>Puzzle - Easy</h4>
+        <ul class="nav-links">
+          <li><a data-active="index" href="index.html">Easy</a></li>
+          <li><a data-active="hex" href="hard.html">Hard</a></li>
+        </ul>
+      </div>
+    </nav>
+
+<ul id="puzzle">
+    <li data-position="3"></li>
+    <li data-position="1"></li>
+    <li data-position="8"></li>
+    <li data-position="5"></li>
+    <li data-position="2"></li>
+    <li data-position="7"></li>
+    <li data-position="4"></li>
+    <li data-position="6"></li>
+</ul>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        var correct = new Array(1,2,3,4,5,6,7,8);
+        var height = 47;
+        for(i = 1; i <= 15; i++){
+        $('[data-position="' + i + '"]').css('background-position', '0 -' + (i-1)*height + 'px');
+        }
+        $( "#puzzle" ).sortable({
+        update: function(event, ui){
+            var order = new Array();
+            $('#puzzle li').each(function(i, val){
+            order.push( $(this).data('position'));
+            });
+            if (order.toString() == correct.toString()){
+            alert('Congratulations!');
+            }
+        }
+        });
+        $( "#puzzle" ).disableSelection();
+    });
+</script>
+
+</body>
+</html>
